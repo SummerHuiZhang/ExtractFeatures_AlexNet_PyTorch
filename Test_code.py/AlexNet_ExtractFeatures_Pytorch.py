@@ -71,16 +71,12 @@ class AlexNet(nn.Module):
             nn.Linear(4096, num_classes),
                )
     def forward(self, x):
-        x = self.features1(x)
-        x = self.Conv3(x)
-        features_Conv3 = x
-#        features_Conv3 = features_Conv3.view(x.size(0),256*13*13)
-        x = self.features2(x)
+        x = self.features(x)
+        conv5_features=x
         x = self.avgpool(x)
-        x = x.view(x.size(0), 256 * 6 * 6)
+        x = torch.flatten(x, 1)
         x = self.classifier(x)
-        return features_Conv3
-        print("finish forward")
+        return conv5_features
 #net = net.cuda()
 transforms_ = [ transforms.Resize(int(260*1.12), Image.BICUBIC),
                 transforms.RandomCrop((260, 640)),
