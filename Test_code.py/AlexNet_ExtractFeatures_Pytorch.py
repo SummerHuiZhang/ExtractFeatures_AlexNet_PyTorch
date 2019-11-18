@@ -40,6 +40,7 @@ class AlexNet(nn.Module):
             nn.ReLU(inplace=True),
         #self.maxpool1 = 
             nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(64, 192, kernel_size=5, padding=2),     
         #self.AF2 =  
             nn.ReLU(inplace=True),
         #self.maxpool2 = 
